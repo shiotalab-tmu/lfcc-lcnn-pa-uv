@@ -1,0 +1,15 @@
+[project]
+name = "lfcc-lcnn"
+version = "0.1.0"
+readme = "README.md"
+requires-python = "~=3.8"
+dependencies = [
+    "librosa==0.8.0",
+    "matplotlib>=3.5.3",
+    "numpy==1.18.1",
+    "scipy==1.4.1",
+    "torch==1.6",
+    "torchaudio==0.6",
+    "torchvision==0.7",
+    "wandb>=0.19.10",
+]
