@@ -8,3 +8,4 @@ __pretrained/
 
 DATA/
 results/
+wandb/

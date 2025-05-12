@@ -197,6 +197,7 @@ def f_run_one_epoch(
 
 def f_train_wrapper(
     args,
+    run,
     pt_model,
     loss_wrapper,
     device,
@@ -448,6 +449,20 @@ def f_train_wrapper(
             loss_val,
             flag_new_best,
             optimizer_wrapper.get_lr_info(),
+        )
+        # save log in wandb
+        run.log(
+            {
+                "epoch": epoch_idx,
+                "time": {
+                    "train": time_trn,
+                    "val": time_val,
+                },
+                "loss": {
+                    "train": loss_trn,
+                    "val": loss_val,
+                },
+            }
         )
 
         # save the best model

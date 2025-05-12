@@ -13,6 +13,7 @@ from __future__ import absolute_import
 import importlib
 
 import torch
+import wandb
 
 import core_scripts.config_parse.arg_parse as nii_arg_parse
 import core_scripts.data_io.default_data_io as nii_dset
@@ -54,6 +55,20 @@ def main():
             "num_workers": args.num_workers,
             "sampler": args.sampler,
         }
+        run = wandb.init(
+            # Set the wandb entity where your project will be logged (generally your team name).
+            entity=None,
+            # Set the wandb project where this run will be logged.
+            project="lfcc-lcnn",
+            # Track hyperparameters and run metadata.
+            config={
+                "epochs": args.epochs,
+                "batch_size": args.batch_size,
+                "learning_rate": args.lr,
+                "seed": args.seed,
+                "dataset": prj_conf.trn_set_name,
+            },
+        )
 
         # Load file list and create data loader
         trn_lst = nii_list_tool.read_list_from_text(prj_conf.trn_list)
@@ -115,6 +130,8 @@ def main():
         )
         loss_wrapper = prj_model.Loss(args)
 
+        run.config["model"] = str(model)
+
         # initialize the optimizer
         optimizer_wrapper = nii_op_wrapper.OptimizerWrapper(model, args)
 
@@ -127,6 +144,7 @@ def main():
         # start training
         nii_nn_wrapper.f_train_wrapper(
             args,
+            run,
             model,
             loss_wrapper,
             device,
@@ -136,6 +154,7 @@ def main():
             checkpoint,
         )
         # done for traing
+        run.finish()
 
     else:
         # for inference

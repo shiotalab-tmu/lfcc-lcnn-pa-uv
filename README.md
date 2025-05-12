@@ -1,7 +1,10 @@
-# ASVspoof2021 LFCC-LCNN Baseline のPA実装をuvで動かせるようにして結果の出力先も整備した神のリポジトリ
+# ASVspoof2021 LFCC-LCNN Baseline のPA実装をuvで動かせるようにして結果の出力先も整備してwandbにも対応した神のリポジトリ
 ## Usage
 ```
 uv sync
+```
+```
+uv run wandb login
 ```
 
 あとは通常どおりスクリプトを実行する（README参照）
