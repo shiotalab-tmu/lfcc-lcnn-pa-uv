@@ -18,7 +18,7 @@ if [ -d "${result_dir}" ]; then
   echo "ディレクトリ ${result_dir} は既に存在します。もう一度実行してください。"
   exit 1
 fi
-mkdir -p ${result_dir}
+mkdir -p ${result_dir}/checkpoint
 
 log_train_name=${result_dir}/log_train
 log_err_name=${result_dir}/log_err
@@ -34,9 +34,10 @@ python main.py --model-forward-with-file-name \
        --lr-decay-factor 0.5 --lr-scheduler-type 1 \
        --trained-model ${pretrained_model} \
        --ignore-training-history-in-trained-model \
+       --save-model-dir ${result_dir}/checkpoint \
        --lr 0.0003 --seed 1000 > ${log_train_name}.txt 2>${log_err_name}.txt
 echo -e "Training process finished"
-echo -e "Trainig log has been written to $PWD/${log_train_name}.txt"
+echo -e "Training log has been written to $PWD/${log_train_name}.txt"
 
 
 
