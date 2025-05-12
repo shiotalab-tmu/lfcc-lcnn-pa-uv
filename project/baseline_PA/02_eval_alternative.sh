@@ -9,9 +9,9 @@
 # on the same data set but troublesome when evaluating
 # different evaluationg sets.
 #
-# This script assumes one model has been trained, 
+# This script assumes one model has been trained,
 # and it just needs the directory to the waveforms of
-# the evaluation set. It will automatically produce 
+# the evaluation set. It will automatically produce
 # the test.lst and config config_auto.py
 #
 # Usage:
@@ -40,14 +40,23 @@ echo -e "Run evaluation"
 source $PWD/../../env.sh
 
 # step2. prepare test.lst
-ls ${eval_wav_dir} | xargs -I{} basename {} .wav | xargs -I{} basename {} .flac > ${eval_set_name}.lst
+if [ ! -f ${eval_set_name}.lst ]; then
+  ls ${eval_wav_dir} | xargs -I{} basename {} .wav | xargs -I{} basename {} .flac > ${eval_set_name}.lst
+fi
 
 # step3. export for config_auto.py
 export TEMP_DATA_NAME=${eval_set_name}
 export TEMP_DATA_DIR=${eval_wav_dir}
 
 # step4. run evaluation
-log_name=log_eval_${eval_set_name}
+result_dir=results/$(date +%Y%m%d-%H%M%S)
+if [ -d "${result_dir}" ]; then
+  echo "ディレクトリ ${result_dir} は既に存在します。もう一度実行してください。"
+  exit 1
+fi
+mkdir -p ${result_dir}
+
+log_name=${result_dir}/log_eval_${eval_set_name}
 python main.py \
        --inference \
        --model-forward-with-file-name \
@@ -61,6 +70,6 @@ echo -e "Score has been written to $PWD/${log_name}_score.txt"
 
 # step5. delete intermediate files
 #  this script is created in step2
-rm ${eval_set_name}.lst
+# rm ${eval_set_name}.lst
 #  this is created by the python code (for convenience)
 rm ${eval_set_name}_utt_length.dic

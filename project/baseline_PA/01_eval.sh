@@ -8,8 +8,15 @@
 #   2. $: bash 01_eval.sh
 ########################
 
-log_name=log_eval
-trained_model=__pretrained/trained_network.pt 
+result_dir=results/$(date +%Y%m%d-%H%M%S)
+if [ -d "${result_dir}" ]; then
+  echo "ディレクトリ ${result_dir} は既に存在します。もう一度実行してください。"
+  exit 1
+fi
+mkdir -p ${result_dir}
+
+log_name=${result_dir}/log_eval
+trained_model=__pretrained/trained_network.pt
 
 echo -e "Run evaluation"
 source $PWD/../../env.sh
