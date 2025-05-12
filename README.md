@@ -1,3 +1,17 @@
+# ASVspoof2021 LFCC-LCNN Baseline のPA実装をuvで動かせるようにして結果の出力先も整備した神のリポジトリ
+## Usage
+```
+uv sync
+```
+
+あとは通常どおりスクリプトを実行する（README参照）
+```
+$: cd project
+$: bash 00_download.sh
+$: bash 02_toy_example.sh
+```
+↑これはtoy datasetでpretrainしたモデルでevalしたあと、pretrainedモデルをtoy datasetでfine-tuneしている
+
 # LFCC-LCNN ASVspoof2021 baseline
 
 By Xin Wang, National Institute of Informatics, 2021
@@ -8,14 +22,14 @@ By Xin Wang, National Institute of Informatics, 2021
 Linux with GPU support, conda, and python.
 
 Python dependency:
-1. Python 3 (test on python3.8) 
+1. Python 3 (test on python3.8)
 2. Pytorch 1.6 and above (test on pytorch-1.6)
 3. numpy (test on  1.18.1)
 4. scipy (test on 1.4.1)
 5. torchaudio (test on 0.6.0)
 6. librosa (0.8.0) with numba (0.48.0)
 
-You may use [Conda](https://docs.conda.io/en/latest/miniconda.html) and [./env.yml](./env.yml) to build the Python dependency environment: 
+You may use [Conda](https://docs.conda.io/en/latest/miniconda.html) and [./env.yml](./env.yml) to build the Python dependency environment:
 
 ```
 # create environment
@@ -29,7 +43,7 @@ $: conda activate pytorch-asvspoof2021
 
 This repository comes with pre-trained baseline models and a toy database for demonstration (a tiny part of the ASVspoof2019 LA task).
 
-* Evaluate testset trials in toy database using pre-trained model 
+* Evaluate testset trials in toy database using pre-trained model
 
 ```
 $: cd project
@@ -58,13 +72,13 @@ On a Nvidia P100 card, scoring the LA, PA, and DF evaluation sets requires aroun
 
 
 
-## Notes 
+## Notes
 
 #### Q&A
 
-1. To use the pre-trained models and score your own dataset (see example in 01_wrapper_eval.sh), you don't need to provide a protocol file. Neither do you need to change the path to the protocol file in config.py. 
+1. To use the pre-trained models and score your own dataset (see example in 01_wrapper_eval.sh), you don't need to provide a protocol file. Neither do you need to change the path to the protocol file in config.py.
 
-2. The input waveform must be mono-channel. 
+2. The input waveform must be mono-channel.
 
 3. If waveform is in WAV format, please change the line `input_exts = ['.flac']` to `input_exts = ['.wav']` in project/baseline_LA/config.py and project/baseline_LA/config_auto.py
 
@@ -81,7 +95,7 @@ On a Nvidia P100 card, scoring the LA, PA, and DF evaluation sets requires aroun
 >>> f.close()
 ```
 
-* I assume that data should be stored in [c_continuous format](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.flags.html) (row-major). 
+* I assume that data should be stored in [c_continuous format](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.flags.html) (row-major).
 There are helper functions in ./core_scripts/data_io/io_tools.py to read and write binary data:
 ```
 # create a float32 data array
@@ -100,7 +114,7 @@ There are helper functions in ./core_scripts/data_io/io_tools.py to read and wri
 Directory | Function
 ------------ | -------------
 ./core_scripts | scripts to manage the training process, data io, and so on
-./core_modules | finished pytorch modules 
+./core_modules | finished pytorch modules
 ./sandbox | new functions and modules to be test
 ./project | project directories, and each folder correspond to one model for one dataset
 ./project/\*/\*/main.py | script to load data and run training and inference
