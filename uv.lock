@@ -241,10 +241,9 @@ wheels = [
 [[package]]
 name = "colorama"
 version = "0.4.6"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/d8/53/6f443c9a4a8358a93a6792e2acffb9d9d5cb0a5cfd8802644b7b1c9a02e4/colorama-0.4.6.tar.gz", hash = "sha256:08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44", size = 27697 }
+source = { registry = "https://download.pytorch.org/whl/torch_stable.html" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/d1/d6/3965ed04c63042e047cb6a3e6ed1a63a35087b6a609aa3a15ed8ac56c221/colorama-0.4.6-py2.py3-none-any.whl", hash = "sha256:4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6", size = 25335 },
+    { url = "https://download.pytorch.org/whl/colorama-0.4.6-py2.py3-none-any.whl" },
 ]
 
 [[package]]
@@ -735,7 +734,7 @@ requires-dist = [
     { name = "matplotlib", specifier = ">=3.5.3" },
     { name = "numpy", specifier = "==1.18.1" },
     { name = "scipy", specifier = "==1.4.1" },
-    { name = "torch", specifier = "==1.6" },
+    { name = "torch", specifier = "==1.6.0+cu101" },
     { name = "torchaudio", specifier = "==0.6" },
     { name = "torchvision", specifier = "==0.7" },
     { name = "wandb", specifier = ">=0.19.10" },
@@ -1852,33 +1851,34 @@ wheels = [
 
 [[package]]
 name = "torch"
-version = "1.6.0"
-source = { registry = "https://pypi.org/simple" }
+version = "1.6.0+cu101"
+source = { registry = "https://download.pytorch.org/whl/torch_stable.html" }
 dependencies = [
     { name = "future" },
     { name = "numpy" },
 ]
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/8c/5d/faf0d8ac260c7f1eda7d063001c137da5223be1c137658384d2d45dcd0d5/torch-1.6.0-cp38-cp38-manylinux1_x86_64.whl", hash = "sha256:5357873e243bcfa804c32dc341f564e9a4c12addfc9baae4ee857fcc09a0a216", size = 748809200 },
-    { url = "https://files.pythonhosted.org/packages/76/ad/d30381549db0ecfd2c89db746be50515f4f54d8ce1347d95d16211b45658/torch-1.6.0-cp38-none-macosx_10_9_x86_64.whl", hash = "sha256:4f9a4ad7947cef566afb0a323d99009fe8524f0b0f2ca1fb7ad5de0400381a5b", size = 97481254 },
+    { url = "https://download.pytorch.org/whl/cu101/torch-1.6.0%2Bcu101-cp38-cp38-linux_x86_64.whl" },
+    { url = "https://download.pytorch.org/whl/cu101/torch-1.6.0%2Bcu101-cp38-cp38-win_amd64.whl" },
 ]
 
 [[package]]
 name = "torchaudio"
 version = "0.6.0"
-source = { registry = "https://pypi.org/simple" }
+source = { registry = "https://download.pytorch.org/whl/torch_stable.html" }
 dependencies = [
     { name = "torch" },
 ]
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/06/07/f8d676324d4446263d84a237817c4f1c24aa1274769441ee3dd775225c91/torchaudio-0.6.0-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:3afa17ad9154f01c7ac3308ebf8b9c6b64a263bb5d0ba2fd8319b1e0194f3579", size = 1334354 },
-    { url = "https://files.pythonhosted.org/packages/a7/61/fa5a48f3bcabe999895ca867db214a38902bd018d5f8ba07fd36e48902e9/torchaudio-0.6.0-cp38-cp38-manylinux1_x86_64.whl", hash = "sha256:9259f6677e3e0051d006fdb8c117a0f036d30657cbbd7e20ad7179c1549a8488", size = 6676980 },
+    { url = "https://download.pytorch.org/whl/torchaudio-0.6.0-cp38-none-win_amd64.whl" },
+    { url = "https://download.pytorch.org/whl/torchaudio-0.6.0-cp38-cp38-linux_x86_64.whl" },
+    { url = "https://download.pytorch.org/whl/torchaudio-0.6.0-cp38-cp38-macosx_10_9_x86_64.whl" },
 ]
 
 [[package]]
 name = "torchvision"
 version = "0.7.0"
-source = { registry = "https://pypi.org/simple" }
+source = { registry = "https://download.pytorch.org/whl/torch_stable.html" }
 dependencies = [
     { name = "numpy" },
     { name = "pillow", version = "10.4.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.9'" },
@@ -1886,8 +1886,9 @@ dependencies = [
     { name = "torch" },
 ]
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/f4/89/6e6e508781858299e74dacf157d46853701348243ba2f29eee37ec5fcf73/torchvision-0.7.0-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:f5686e0a0dd511ac33eb9d6279bd34edd9f282dcb7c8ad21e290882c6206504f", size = 387674 },
-    { url = "https://files.pythonhosted.org/packages/38/a7/a6a009991d0df86ef76023f1334a0d1201b310dd0e7abb4d3e64b080cc87/torchvision-0.7.0-cp38-cp38-manylinux1_x86_64.whl", hash = "sha256:cfa2b367bc9acf20f18b151d0525970279719e81969c17214effe77245875354", size = 5917610 },
+    { url = "https://download.pytorch.org/whl/cu102/torchvision-0.7.0-cp38-cp38-linux_x86_64.whl" },
+    { url = "https://download.pytorch.org/whl/torchvision-0.7.0-cp38-cp38-macosx_10_9_x86_64.whl" },
+    { url = "https://download.pytorch.org/whl/cu102/torchvision-0.7.0-cp38-cp38-win_amd64.whl" },
 ]
 
 [[package]]

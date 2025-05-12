@@ -1,0 +1,10 @@
+__pycache__/
+__pretrained/
+*.pyc
+
+*.lst
+*.pt
+*.dic
+
+DATA/
+results/
