@@ -1,4 +1,5 @@
 # ASVspoof2021 LFCC-LCNN Baseline のPA実装をuvで動かせるようにして結果の出力先も整備してwandbにも対応した神のリポジトリ
+This repository is forked from https://github.com/asvspoof-challenge/2021.
 ## Usage
 ```
 uv sync
